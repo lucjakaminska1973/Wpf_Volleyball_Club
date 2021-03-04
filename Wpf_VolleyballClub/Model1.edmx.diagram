@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="386e849949884d99996bc8218976a6f1" Name="Diagram1">
+        <EntityTypeShape EntityType="VolleyballClubModel.Category" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Coach" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Coach_Contact_Info" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Guardian" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Month" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Payment" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Player" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Player_Contact_Info" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Result" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Rival" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Season" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Tab_Result" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Team" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Team_members" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolleyballClubModel.Active_Players" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="VolleyballClubModel.Category_rival" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.category_team" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.team_members_category" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.coach_address" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.coach_team" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.player_guardian" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.month_payment" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.month_season" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.player_payment" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.season_payment" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.player_address" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.team_members_player" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.result_tab_result" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.rival_tab_result" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.season_rival" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.season_team" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.team_members_season" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.team_tab_result" ManuallyRouted="false" />
+        <AssociationConnector Association="VolleyballClubModel.team_members_team" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

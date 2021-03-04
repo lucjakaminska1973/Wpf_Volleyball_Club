@@ -1,0 +1,1320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VolleyballClubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="category_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="coach_ID" />
+          </Key>
+          <Property Name="coach_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coach_surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="coach_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="license_number" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Coach_Contact_Info">
+          <Key>
+            <PropertyRef Name="coach_ID" />
+          </Key>
+          <Property Name="coach_ID" Type="tinyint" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="street" Type="nvarchar" MaxLength="50" />
+          <Property Name="street_number" Type="varchar" MaxLength="10" />
+          <Property Name="postal_code" Type="nchar" MaxLength="6" />
+          <Property Name="phone_number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Guardian">
+          <Key>
+            <PropertyRef Name="guardian_ID" />
+          </Key>
+          <Property Name="guardian_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="guardian_surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="guardian_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="player_ID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Month">
+          <Key>
+            <PropertyRef Name="month_ID" />
+            <PropertyRef Name="season_ID" />
+          </Key>
+          <Property Name="month_ID" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="season_ID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="month_ID" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="payment_number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="payment_date" Type="date" />
+          <Property Name="amount" Type="smallmoney" Nullable="false" />
+          <Property Name="month_ID" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="season_ID" Type="tinyint" Nullable="false" />
+          <Property Name="player_ID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="player_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname_player" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name_player" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="birthday_date" Type="date" Nullable="false" />
+          <Property Name="club_card_number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="license_number" Type="varchar" MaxLength="20" />
+          <Property Name="validity_license" Type="date" />
+          <Property Name="validity_medical_ex" Type="date" />
+          <Property Name="on_lending" Type="char" MaxLength="3" />
+          <Property Name="native" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Player_Contact_Info">
+          <Key>
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="player_ID" Type="bigint" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="street" Type="nvarchar" MaxLength="50" />
+          <Property Name="street_number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="postal_code" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="result_ID" />
+          </Key>
+          <Property Name="result_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="result_sety" Type="char" MaxLength="3" />
+          <Property Name="result_ponits_team" Type="smallint" Nullable="false" />
+          <Property Name="result_ponits_rival" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rival">
+          <Key>
+            <PropertyRef Name="name_rival" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="name_rival" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="season_ID" Type="tinyint" Nullable="false" />
+          <Property Name="category_ID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="season_id" />
+          </Key>
+          <Property Name="season_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="season" Type="varchar" MaxLength="9" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tab_Result">
+          <Key>
+            <PropertyRef Name="main_umpire_license_number" />
+            <PropertyRef Name="match_date" />
+          </Key>
+          <Property Name="match_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="main_umpire_license_number" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="team_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="name_rival" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="season_ID" Type="tinyint" Nullable="false" />
+          <Property Name="category_ID" Type="tinyint" Nullable="false" />
+          <Property Name="result_id" Type="tinyint" />
+          <Property Name="match_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="team_name" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="team_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="season_ID" Type="tinyint" Nullable="false" />
+          <Property Name="category_ID" Type="tinyint" Nullable="false" />
+          <Property Name="coach_ID" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team_members">
+          <Key>
+            <PropertyRef Name="team_name" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="category_ID" />
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="team_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="season_ID" Type="tinyint" Nullable="false" />
+          <Property Name="category_ID" Type="tinyint" Nullable="false" />
+          <Property Name="player_ID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'VolleyballClub.dbo.Active_Players' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Active_Players">
+          <Key>
+            <PropertyRef Name="surname_player" />
+            <PropertyRef Name="name_player" />
+          </Key>
+          <Property Name="surname_player" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name_player" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="Category_rival">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Rival" Type="Self.Rival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Rival">
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_team">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="coach_address">
+          <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+          <End Role="Coach_Contact_Info" Type="Self.Coach_Contact_Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="coach_ID" />
+            </Principal>
+            <Dependent Role="Coach_Contact_Info">
+              <PropertyRef Name="coach_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="coach_team">
+          <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="coach_ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="coach_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="month_payment">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="month_ID" />
+              <PropertyRef Name="season_ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="month_ID" />
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="month_season">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Month" Type="Self.Month" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Month">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="player_address">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Player_Contact_Info" Type="Self.Player_Contact_Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Player_Contact_Info">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="player_guardian">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Guardian" Type="Self.Guardian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Guardian">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="player_payment">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="result_tab_result">
+          <End Role="Result" Type="Self.Result" Multiplicity="0..1" />
+          <End Role="Tab_Result" Type="Self.Tab_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Result">
+              <PropertyRef Name="result_ID" />
+            </Principal>
+            <Dependent Role="Tab_Result">
+              <PropertyRef Name="result_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rival_tab_result">
+          <End Role="Rival" Type="Self.Rival" Multiplicity="1" />
+          <End Role="Tab_Result" Type="Self.Tab_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rival">
+              <PropertyRef Name="name_rival" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Tab_Result">
+              <PropertyRef Name="name_rival" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="season_payment">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="season_rival">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Rival" Type="Self.Rival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Rival">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="season_team">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_season">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_tab_result">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Tab_Result" Type="Self.Tab_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Tab_Result">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Candidate_To_Cadet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Candidate_To_Junior" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Candidate_To_Pair" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Candidate_To_Pinky" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Candidate_To_Triple" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="VolleyballClubModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coach_Contact_Info" EntityType="Self.Coach_Contact_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guardian" EntityType="Self.Guardian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Month" EntityType="Self.Month" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player_Contact_Info" EntityType="Self.Player_Contact_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rival" EntityType="Self.Rival" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Season" EntityType="Self.Season" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tab_Result" EntityType="Self.Tab_Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team_members" EntityType="Self.Team_members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Active_Players" EntityType="Self.Active_Players" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Active_Players].[surname_player] AS [surname_player], 
+    [Active_Players].[name_player] AS [name_player]
+    FROM [dbo].[Active_Players] AS [Active_Players]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Category_rival" Association="Self.Category_rival">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Rival" EntitySet="Rival" />
+          </AssociationSet>
+          <AssociationSet Name="category_team" Association="Self.category_team">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="coach_address" Association="Self.coach_address">
+            <End Role="Coach" EntitySet="Coach" />
+            <End Role="Coach_Contact_Info" EntitySet="Coach_Contact_Info" />
+          </AssociationSet>
+          <AssociationSet Name="coach_team" Association="Self.coach_team">
+            <End Role="Coach" EntitySet="Coach" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="month_payment" Association="Self.month_payment">
+            <End Role="Month" EntitySet="Month" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="month_season" Association="Self.month_season">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="Month" EntitySet="Month" />
+          </AssociationSet>
+          <AssociationSet Name="player_address" Association="Self.player_address">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Player_Contact_Info" EntitySet="Player_Contact_Info" />
+          </AssociationSet>
+          <AssociationSet Name="player_guardian" Association="Self.player_guardian">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Guardian" EntitySet="Guardian" />
+          </AssociationSet>
+          <AssociationSet Name="player_payment" Association="Self.player_payment">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="result_tab_result" Association="Self.result_tab_result">
+            <End Role="Result" EntitySet="Result" />
+            <End Role="Tab_Result" EntitySet="Tab_Result" />
+          </AssociationSet>
+          <AssociationSet Name="rival_tab_result" Association="Self.rival_tab_result">
+            <End Role="Rival" EntitySet="Rival" />
+            <End Role="Tab_Result" EntitySet="Tab_Result" />
+          </AssociationSet>
+          <AssociationSet Name="season_payment" Association="Self.season_payment">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="season_rival" Association="Self.season_rival">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="Rival" EntitySet="Rival" />
+          </AssociationSet>
+          <AssociationSet Name="season_team" Association="Self.season_team">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_category" Association="Self.team_members_category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_player" Association="Self.team_members_player">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_season" Association="Self.team_members_season">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_team" Association="Self.team_members_team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <AssociationSet Name="team_tab_result" Association="Self.team_tab_result">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Tab_Result" EntitySet="Tab_Result" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VolleyballClubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="category_ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rivals" Relationship="Self.Category_rival" FromRole="Category" ToRole="Rival" />
+          <NavigationProperty Name="Teams" Relationship="Self.category_team" FromRole="Category" ToRole="Team" />
+          <NavigationProperty Name="Team_members" Relationship="Self.team_members_category" FromRole="Category" ToRole="Team_members" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="coach_ID" />
+          </Key>
+          <Property Name="coach_ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coach_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="coach_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="license_number" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coach_Contact_Info" Relationship="Self.coach_address" FromRole="Coach" ToRole="Coach_Contact_Info" />
+          <NavigationProperty Name="Teams" Relationship="Self.coach_team" FromRole="Coach" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Coach_Contact_Info">
+          <Key>
+            <PropertyRef Name="coach_ID" />
+          </Key>
+          <Property Name="coach_ID" Type="Byte" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="street_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="postal_code" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coach" Relationship="Self.coach_address" FromRole="Coach_Contact_Info" ToRole="Coach" />
+        </EntityType>
+        <EntityType Name="Guardian">
+          <Key>
+            <PropertyRef Name="guardian_ID" />
+          </Key>
+          <Property Name="guardian_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="guardian_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="guardian_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="player_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Player" Relationship="Self.player_guardian" FromRole="Guardian" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Month">
+          <Key>
+            <PropertyRef Name="month_ID" />
+            <PropertyRef Name="season_ID" />
+          </Key>
+          <Property Name="month_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="season_ID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.month_payment" FromRole="Month" ToRole="Payment" />
+          <NavigationProperty Name="Season" Relationship="Self.month_season" FromRole="Month" ToRole="Season" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="month_ID" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="payment_number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="payment_date" Type="DateTime" Precision="0" />
+          <Property Name="amount" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="month_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="season_ID" Type="Byte" Nullable="false" />
+          <Property Name="player_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Month" Relationship="Self.month_payment" FromRole="Payment" ToRole="Month" />
+          <NavigationProperty Name="Player" Relationship="Self.player_payment" FromRole="Payment" ToRole="Player" />
+          <NavigationProperty Name="Season" Relationship="Self.season_payment" FromRole="Payment" ToRole="Season" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="player_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname_player" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_player" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birthday_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="club_card_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="license_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="validity_license" Type="DateTime" Precision="0" />
+          <Property Name="validity_medical_ex" Type="DateTime" Precision="0" />
+          <Property Name="on_lending" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="native" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Guardians" Relationship="Self.player_guardian" FromRole="Player" ToRole="Guardian" />
+          <NavigationProperty Name="Payments" Relationship="Self.player_payment" FromRole="Player" ToRole="Payment" />
+          <NavigationProperty Name="Player_Contact_Info" Relationship="Self.player_address" FromRole="Player" ToRole="Player_Contact_Info" />
+          <NavigationProperty Name="Team_members" Relationship="Self.team_members_player" FromRole="Player" ToRole="Team_members" />
+        </EntityType>
+        <EntityType Name="Player_Contact_Info">
+          <Key>
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="player_ID" Type="Int64" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="street_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="postal_code" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Player" Relationship="Self.player_address" FromRole="Player_Contact_Info" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="result_ID" />
+          </Key>
+          <Property Name="result_ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="result_sety" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="result_ponits_team" Type="Int16" Nullable="false" />
+          <Property Name="result_ponits_rival" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Tab_Result" Relationship="Self.result_tab_result" FromRole="Result" ToRole="Tab_Result" />
+        </EntityType>
+        <EntityType Name="Rival">
+          <Key>
+            <PropertyRef Name="name_rival" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="name_rival" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="season_ID" Type="Byte" Nullable="false" />
+          <Property Name="category_ID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.Category_rival" FromRole="Rival" ToRole="Category" />
+          <NavigationProperty Name="Tab_Result" Relationship="Self.rival_tab_result" FromRole="Rival" ToRole="Tab_Result" />
+          <NavigationProperty Name="Season" Relationship="Self.season_rival" FromRole="Rival" ToRole="Season" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="season_id" />
+          </Key>
+          <Property Name="season_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="season1" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Months" Relationship="Self.month_season" FromRole="Season" ToRole="Month" />
+          <NavigationProperty Name="Payments" Relationship="Self.season_payment" FromRole="Season" ToRole="Payment" />
+          <NavigationProperty Name="Rivals" Relationship="Self.season_rival" FromRole="Season" ToRole="Rival" />
+          <NavigationProperty Name="Teams" Relationship="Self.season_team" FromRole="Season" ToRole="Team" />
+          <NavigationProperty Name="Team_members" Relationship="Self.team_members_season" FromRole="Season" ToRole="Team_members" />
+        </EntityType>
+        <EntityType Name="Tab_Result">
+          <Key>
+            <PropertyRef Name="main_umpire_license_number" />
+            <PropertyRef Name="match_date" />
+          </Key>
+          <Property Name="match_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="main_umpire_license_number" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="team_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_rival" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="season_ID" Type="Byte" Nullable="false" />
+          <Property Name="category_ID" Type="Byte" Nullable="false" />
+          <Property Name="result_id" Type="Byte" />
+          <Property Name="match_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Result" Relationship="Self.result_tab_result" FromRole="Tab_Result" ToRole="Result" />
+          <NavigationProperty Name="Rival" Relationship="Self.rival_tab_result" FromRole="Tab_Result" ToRole="Rival" />
+          <NavigationProperty Name="Team" Relationship="Self.team_tab_result" FromRole="Tab_Result" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="team_name" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="team_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="season_ID" Type="Byte" Nullable="false" />
+          <Property Name="category_ID" Type="Byte" Nullable="false" />
+          <Property Name="coach_ID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.category_team" FromRole="Team" ToRole="Category" />
+          <NavigationProperty Name="Coach" Relationship="Self.coach_team" FromRole="Team" ToRole="Coach" />
+          <NavigationProperty Name="Season" Relationship="Self.season_team" FromRole="Team" ToRole="Season" />
+          <NavigationProperty Name="Tab_Result" Relationship="Self.team_tab_result" FromRole="Team" ToRole="Tab_Result" />
+          <NavigationProperty Name="Team_members" Relationship="Self.team_members_team" FromRole="Team" ToRole="Team_members" />
+        </EntityType>
+        <EntityType Name="Team_members">
+          <Key>
+            <PropertyRef Name="team_name" />
+            <PropertyRef Name="season_ID" />
+            <PropertyRef Name="category_ID" />
+            <PropertyRef Name="player_ID" />
+          </Key>
+          <Property Name="team_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="season_ID" Type="Byte" Nullable="false" />
+          <Property Name="category_ID" Type="Byte" Nullable="false" />
+          <Property Name="player_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.team_members_category" FromRole="Team_members" ToRole="Category" />
+          <NavigationProperty Name="Player" Relationship="Self.team_members_player" FromRole="Team_members" ToRole="Player" />
+          <NavigationProperty Name="Season" Relationship="Self.team_members_season" FromRole="Team_members" ToRole="Season" />
+          <NavigationProperty Name="Team" Relationship="Self.team_members_team" FromRole="Team_members" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Active_Players">
+          <Key>
+            <PropertyRef Name="surname_player" />
+            <PropertyRef Name="name_player" />
+          </Key>
+          <Property Name="surname_player" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_player" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="Category_rival">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Rival" Type="Self.Rival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Rival">
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_team">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="coach_address">
+          <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+          <End Role="Coach_Contact_Info" Type="Self.Coach_Contact_Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="coach_ID" />
+            </Principal>
+            <Dependent Role="Coach_Contact_Info">
+              <PropertyRef Name="coach_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="coach_team">
+          <End Role="Coach" Type="Self.Coach" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="coach_ID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="coach_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="player_guardian">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Guardian" Type="Self.Guardian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Guardian">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="month_payment">
+          <End Role="Month" Type="Self.Month" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Month">
+              <PropertyRef Name="month_ID" />
+              <PropertyRef Name="season_ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="month_ID" />
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="month_season">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Month" Type="Self.Month" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Month">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="player_payment">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="season_payment">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="player_address">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Player_Contact_Info" Type="Self.Player_Contact_Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Player_Contact_Info">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="player_ID" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="player_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="result_tab_result">
+          <End Role="Result" Type="Self.Result" Multiplicity="0..1" />
+          <End Role="Tab_Result" Type="Self.Tab_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Result">
+              <PropertyRef Name="result_ID" />
+            </Principal>
+            <Dependent Role="Tab_Result">
+              <PropertyRef Name="result_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="rival_tab_result">
+          <End Role="Rival" Type="Self.Rival" Multiplicity="1" />
+          <End Role="Tab_Result" Type="Self.Tab_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rival">
+              <PropertyRef Name="name_rival" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Tab_Result">
+              <PropertyRef Name="name_rival" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="season_rival">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Rival" Type="Self.Rival" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Rival">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="season_team">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_season">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="season_id" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="season_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_tab_result">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Tab_Result" Type="Self.Tab_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Tab_Result">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="team_members_team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Team_members" Type="Self.Team_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Principal>
+            <Dependent Role="Team_members">
+              <PropertyRef Name="team_name" />
+              <PropertyRef Name="season_ID" />
+              <PropertyRef Name="category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VolleyballClubEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Coaches" EntityType="Self.Coach" />
+          <EntitySet Name="Coach_Contact_Info" EntityType="Self.Coach_Contact_Info" />
+          <EntitySet Name="Guardians" EntityType="Self.Guardian" />
+          <EntitySet Name="Months" EntityType="Self.Month" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Player_Contact_Info" EntityType="Self.Player_Contact_Info" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="Rivals" EntityType="Self.Rival" />
+          <EntitySet Name="Seasons" EntityType="Self.Season" />
+          <EntitySet Name="Tab_Result" EntityType="Self.Tab_Result" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="Team_members" EntityType="Self.Team_members" />
+          <EntitySet Name="Active_Players" EntityType="Self.Active_Players" />
+          <AssociationSet Name="Category_rival" Association="Self.Category_rival">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Rival" EntitySet="Rivals" />
+          </AssociationSet>
+          <AssociationSet Name="category_team" Association="Self.category_team">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_category" Association="Self.team_members_category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <AssociationSet Name="coach_address" Association="Self.coach_address">
+            <End Role="Coach" EntitySet="Coaches" />
+            <End Role="Coach_Contact_Info" EntitySet="Coach_Contact_Info" />
+          </AssociationSet>
+          <AssociationSet Name="coach_team" Association="Self.coach_team">
+            <End Role="Coach" EntitySet="Coaches" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="player_guardian" Association="Self.player_guardian">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Guardian" EntitySet="Guardians" />
+          </AssociationSet>
+          <AssociationSet Name="month_payment" Association="Self.month_payment">
+            <End Role="Month" EntitySet="Months" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="month_season" Association="Self.month_season">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Month" EntitySet="Months" />
+          </AssociationSet>
+          <AssociationSet Name="player_payment" Association="Self.player_payment">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="season_payment" Association="Self.season_payment">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="player_address" Association="Self.player_address">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Player_Contact_Info" EntitySet="Player_Contact_Info" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_player" Association="Self.team_members_player">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <AssociationSet Name="result_tab_result" Association="Self.result_tab_result">
+            <End Role="Result" EntitySet="Results" />
+            <End Role="Tab_Result" EntitySet="Tab_Result" />
+          </AssociationSet>
+          <AssociationSet Name="rival_tab_result" Association="Self.rival_tab_result">
+            <End Role="Rival" EntitySet="Rivals" />
+            <End Role="Tab_Result" EntitySet="Tab_Result" />
+          </AssociationSet>
+          <AssociationSet Name="season_rival" Association="Self.season_rival">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Rival" EntitySet="Rivals" />
+          </AssociationSet>
+          <AssociationSet Name="season_team" Association="Self.season_team">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_season" Association="Self.team_members_season">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <AssociationSet Name="team_tab_result" Association="Self.team_tab_result">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Tab_Result" EntitySet="Tab_Result" />
+          </AssociationSet>
+          <AssociationSet Name="team_members_team" Association="Self.team_members_team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Team_members" EntitySet="Team_members" />
+          </AssociationSet>
+          <FunctionImport Name="Candidate_To_Cadet" ReturnType="Collection(VolleyballClubModel.Candidate_To_Cadet_Result)" />
+          <FunctionImport Name="Candidate_To_Junior" ReturnType="Collection(VolleyballClubModel.Candidate_To_Junior_Result)" />
+          <FunctionImport Name="Candidate_To_Pair" ReturnType="Collection(VolleyballClubModel.Candidate_To_Pair_Result)" />
+          <FunctionImport Name="Candidate_To_Pinky" ReturnType="Collection(VolleyballClubModel.Candidate_To_Pinky_Result)" />
+          <FunctionImport Name="Candidate_To_Triple" ReturnType="Collection(VolleyballClubModel.Candidate_To_Triple_Result)" />
+        </EntityContainer>
+        <ComplexType Name="Candidate_To_Cadet_Result">
+          <Property Type="String" Name="surname_player" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name_player" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="birthday_date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Candidate_To_Junior_Result">
+          <Property Type="String" Name="surname_player" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name_player" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="birthday_date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Candidate_To_Pair_Result">
+          <Property Type="String" Name="surname_player" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name_player" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="birthday_date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Candidate_To_Pinky_Result">
+          <Property Type="String" Name="surname_player" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name_player" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="birthday_date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Candidate_To_Triple_Result">
+          <Property Type="String" Name="surname_player" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name_player" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="birthday_date" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VolleyballClubModelStoreContainer" CdmEntityContainer="VolleyballClubEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coaches">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Coach">
+              <MappingFragment StoreEntitySet="Coach">
+                <ScalarProperty Name="coach_ID" ColumnName="coach_ID" />
+                <ScalarProperty Name="coach_surname" ColumnName="coach_surname" />
+                <ScalarProperty Name="coach_name" ColumnName="coach_name" />
+                <ScalarProperty Name="license_number" ColumnName="license_number" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coach_Contact_Info">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Coach_Contact_Info">
+              <MappingFragment StoreEntitySet="Coach_Contact_Info">
+                <ScalarProperty Name="coach_ID" ColumnName="coach_ID" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="street_number" ColumnName="street_number" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guardians">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Guardian">
+              <MappingFragment StoreEntitySet="Guardian">
+                <ScalarProperty Name="guardian_ID" ColumnName="guardian_ID" />
+                <ScalarProperty Name="guardian_surname" ColumnName="guardian_surname" />
+                <ScalarProperty Name="guardian_name" ColumnName="guardian_name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="player_ID" ColumnName="player_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Months">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Month">
+              <MappingFragment StoreEntitySet="Month">
+                <ScalarProperty Name="month_ID" ColumnName="month_ID" />
+                <ScalarProperty Name="season_ID" ColumnName="season_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="payment_number" ColumnName="payment_number" />
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="month_ID" ColumnName="month_ID" />
+                <ScalarProperty Name="season_ID" ColumnName="season_ID" />
+                <ScalarProperty Name="player_ID" ColumnName="player_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="player_ID" ColumnName="player_ID" />
+                <ScalarProperty Name="surname_player" ColumnName="surname_player" />
+                <ScalarProperty Name="name_player" ColumnName="name_player" />
+                <ScalarProperty Name="birthday_date" ColumnName="birthday_date" />
+                <ScalarProperty Name="club_card_number" ColumnName="club_card_number" />
+                <ScalarProperty Name="license_number" ColumnName="license_number" />
+                <ScalarProperty Name="validity_license" ColumnName="validity_license" />
+                <ScalarProperty Name="validity_medical_ex" ColumnName="validity_medical_ex" />
+                <ScalarProperty Name="on_lending" ColumnName="on_lending" />
+                <ScalarProperty Name="native" ColumnName="native" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Player_Contact_Info">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Player_Contact_Info">
+              <MappingFragment StoreEntitySet="Player_Contact_Info">
+                <ScalarProperty Name="player_ID" ColumnName="player_ID" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="street_number" ColumnName="street_number" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="result_ID" ColumnName="result_ID" />
+                <ScalarProperty Name="result_sety" ColumnName="result_sety" />
+                <ScalarProperty Name="result_ponits_team" ColumnName="result_ponits_team" />
+                <ScalarProperty Name="result_ponits_rival" ColumnName="result_ponits_rival" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rivals">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Rival">
+              <MappingFragment StoreEntitySet="Rival">
+                <ScalarProperty Name="name_rival" ColumnName="name_rival" />
+                <ScalarProperty Name="season_ID" ColumnName="season_ID" />
+                <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seasons">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Season">
+              <MappingFragment StoreEntitySet="Season">
+                <ScalarProperty Name="season_id" ColumnName="season_id" />
+                <ScalarProperty Name="season1" ColumnName="season" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tab_Result">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Tab_Result">
+              <MappingFragment StoreEntitySet="Tab_Result">
+                <ScalarProperty Name="match_ID" ColumnName="match_ID" />
+                <ScalarProperty Name="main_umpire_license_number" ColumnName="main_umpire_license_number" />
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
+                <ScalarProperty Name="name_rival" ColumnName="name_rival" />
+                <ScalarProperty Name="season_ID" ColumnName="season_ID" />
+                <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+                <ScalarProperty Name="result_id" ColumnName="result_id" />
+                <ScalarProperty Name="match_date" ColumnName="match_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
+                <ScalarProperty Name="season_ID" ColumnName="season_ID" />
+                <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+                <ScalarProperty Name="coach_ID" ColumnName="coach_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Team_members">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Team_members">
+              <MappingFragment StoreEntitySet="Team_members">
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
+                <ScalarProperty Name="season_ID" ColumnName="season_ID" />
+                <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+                <ScalarProperty Name="player_ID" ColumnName="player_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Active_Players">
+            <EntityTypeMapping TypeName="VolleyballClubModel.Active_Players">
+              <MappingFragment StoreEntitySet="Active_Players">
+                <ScalarProperty Name="surname_player" ColumnName="surname_player" />
+                <ScalarProperty Name="name_player" ColumnName="name_player" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Candidate_To_Cadet" FunctionName="VolleyballClubModel.Store.Candidate_To_Cadet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolleyballClubModel.Candidate_To_Cadet_Result">
+                <ScalarProperty Name="surname_player" ColumnName="surname_player" />
+                <ScalarProperty Name="name_player" ColumnName="name_player" />
+                <ScalarProperty Name="birthday_date" ColumnName="birthday_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Candidate_To_Junior" FunctionName="VolleyballClubModel.Store.Candidate_To_Junior">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolleyballClubModel.Candidate_To_Junior_Result">
+                <ScalarProperty Name="surname_player" ColumnName="surname_player" />
+                <ScalarProperty Name="name_player" ColumnName="name_player" />
+                <ScalarProperty Name="birthday_date" ColumnName="birthday_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Candidate_To_Pair" FunctionName="VolleyballClubModel.Store.Candidate_To_Pair">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolleyballClubModel.Candidate_To_Pair_Result">
+                <ScalarProperty Name="surname_player" ColumnName="surname_player" />
+                <ScalarProperty Name="name_player" ColumnName="name_player" />
+                <ScalarProperty Name="birthday_date" ColumnName="birthday_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Candidate_To_Pinky" FunctionName="VolleyballClubModel.Store.Candidate_To_Pinky">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolleyballClubModel.Candidate_To_Pinky_Result">
+                <ScalarProperty Name="surname_player" ColumnName="surname_player" />
+                <ScalarProperty Name="name_player" ColumnName="name_player" />
+                <ScalarProperty Name="birthday_date" ColumnName="birthday_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Candidate_To_Triple" FunctionName="VolleyballClubModel.Store.Candidate_To_Triple">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolleyballClubModel.Candidate_To_Triple_Result">
+                <ScalarProperty Name="surname_player" ColumnName="surname_player" />
+                <ScalarProperty Name="name_player" ColumnName="name_player" />
+                <ScalarProperty Name="birthday_date" ColumnName="birthday_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
