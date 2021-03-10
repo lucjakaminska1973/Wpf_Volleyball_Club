@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Wpf_VolleyballClub.NewViewModels;
 namespace Wpf_VolleyballClub
 {
     /// <summary>
@@ -20,9 +21,12 @@ namespace Wpf_VolleyballClub
     /// </summary>
     public partial class MainWindow : Window
     {
+        PlayersViewModel ViewModel;
         public MainWindow()
         {
             InitializeComponent();
+            ViewModel = new PlayersViewModel();
+            this.DataContext = ViewModel;
         }
     }
 }
