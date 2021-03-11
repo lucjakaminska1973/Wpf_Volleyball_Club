@@ -79,6 +79,7 @@
     <Compile Include="Coach_Contact_Info.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Commands\RelayCommands.cs" />
     <Compile Include="Guardian.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
