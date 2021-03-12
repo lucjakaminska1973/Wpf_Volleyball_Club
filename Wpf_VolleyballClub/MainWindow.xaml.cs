@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using Wpf_VolleyballClub.NewViewModels;
+using Wpf_VolleyballClub.View;
 namespace Wpf_VolleyballClub
 {
     /// <summary>
@@ -21,12 +22,25 @@ namespace Wpf_VolleyballClub
     /// </summary>
     public partial class MainWindow : Window
     {
-        PlayersViewModel ViewModel;
+        public PlayersViewModel PlayerVM { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel = new PlayersViewModel();
-            this.DataContext = ViewModel;
+            PlayerVM = new PlayersViewModel();
+          
+        }
+
+        private void btnCategory_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+            
         }
     }
 }
