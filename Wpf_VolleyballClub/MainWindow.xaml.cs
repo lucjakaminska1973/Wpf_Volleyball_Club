@@ -22,23 +22,25 @@ namespace Wpf_VolleyballClub
     /// </summary>
     public partial class MainWindow : Window
     {
-        public PlayersViewModel PlayerVM { get; set; }
+       // public PlayersViewModel PlayerVM { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            PlayerVM = new PlayersViewModel();
+           // PlayerVM = new PlayersViewModel();
           
         }
 
         private void btnCategory_Click(object sender, RoutedEventArgs e)
         {
-            
+            new CreateATeamView().ShowDialog();
         }
 
         private void btnPlayer_Click(object sender, RoutedEventArgs e)
         {
+            new PlayersViewModel();
             
+            new Window().ShowDialog();
             
             
         }

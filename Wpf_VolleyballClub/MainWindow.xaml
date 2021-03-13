@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
         xmlns:local="clr-namespace:Wpf_VolleyballClub"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -10,7 +11,7 @@
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="#FFF5F5F7" Offset="1"/>
+                <GradientStop Color="#FFD26AF0" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
@@ -41,11 +42,11 @@
                     Margin="10,20"
                     Padding="3"
                     Click="btnPlayer_Click" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" />
-        <Button Name="btnCategory"
+        <Button Name="btnCreateATeam"
                     Grid.Column="1"
                     Grid.Row="2"
                     FontSize="20"
-                    Content="C A T E G O R Y"
+                    Content="C R E A T E    T E A M"
                     Margin="10,20"
                     Padding="3"
                     Click="btnCategory_Click" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" />
