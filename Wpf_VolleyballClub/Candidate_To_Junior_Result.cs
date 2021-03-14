@@ -13,6 +13,7 @@ namespace Wpf_VolleyballClub
     
     public partial class Candidate_To_Junior_Result
     {
+        public long player_ID { get; set; }
         public string surname_player { get; set; }
         public string name_player { get; set; }
         public System.DateTime birthday_date { get; set; }
